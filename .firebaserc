@@ -1,6 +1,7 @@
 {
   "projects": {
     "default": "bento-starter",
-    "staging": "bento-start"
+    "staging": "bento-start",
+    "production": "bento-start"
   }
 }
