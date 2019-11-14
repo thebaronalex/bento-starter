@@ -68,6 +68,9 @@ jobs:
       - persist_to_workspace:
           root: .
           paths: .
+      - store_test_results:
+          path: test-results
+
 
   check-bundles-sizes:
     executor: default-executor
@@ -77,6 +80,9 @@ jobs:
       - run:
           name: 'Check bundles sizes'
           command: npm run bundlesize
+      - store_test_results:
+        path: test-results
+
 
   deploy:
     executor: default-executor
@@ -89,6 +95,9 @@ jobs:
             if [[ "$CIRCLE_BRANCH" == "master" ]]; then
               npm run firebase:deploy:ci
             fi
+      - store_test_results:
+           path: test-results
+
 
 workflows:
   version: 2

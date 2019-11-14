@@ -1,7 +1,5 @@
 {
   "projects": {
-    "default": "bento-starter",
-    "staging": "bento-start",
-    "production": "bento-start"
+    "default": "edison-strong"
   }
 }

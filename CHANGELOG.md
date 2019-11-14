@@ -14,7 +14,7 @@
 ### Added
 
 - ✨ Update service worker skipWaiting workflow ([#137](https://github.com/kefranabg/bento-starter/issues/137)) [[f1eb09d](https://github.com/kefranabg/bento-starter/commit/f1eb09d41da9b53f97de02c17787e4914c70f9b8)]
-- ✨ Add assetlinks file for android apk check [[7476d95](https://github.com/kefranabg/bento-starter/commit/7476d95a5531b2e2339e8638f4d0a2e9d9b54a66)]
+- ✨ Add assetlinks file for android apk check [[7476d95](https://github.com/kefranabg/bentYo-starter/commit/7476d95a5531b2e2339e8638f4d0a2e9d9b54a66)]
 - ✨ Add setup command to npm scripts ([#140](https://github.com/kefranabg/bento-starter/issues/140)) [[6705d3b](https://github.com/kefranabg/bento-starter/commit/6705d3b00f2c32f388d42426d2e83be7896fc773)]
 - ✨ Improve setup command ([#173](https://github.com/kefranabg/bento-starter/issues/173)) [[1afb74a](https://github.com/kefranabg/bento-starter/commit/1afb74a8be89405399744b4f442a6c5432ec5975)]
 - ✨ Update license link in README ([#184](https://github.com/kefranabg/bento-starter/issues/184)) [[f2e102e](https://github.com/kefranabg/bento-starter/commit/f2e102e86567b25d313cf1ad12a0a25b1d2d0dda)]
