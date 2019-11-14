@@ -7,7 +7,7 @@
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
     "prettier:format-all": "prettier --write \"**/*.{vue,scss,sass,js,json}\"",
-    "prettier:check": "prettier \"**/*.{vue,js}\" --list-different",
+    "prettier:check": "prettier",
     "firebase:deploy:ci": "firebase deploy --non-interactive --token $FIREBASE_TOKEN",
     "bundlesize": "bundlesize"
   },
