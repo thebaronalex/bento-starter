@@ -1,11 +1,10 @@
-version: 2.1
+version: 2.1.2
 
-executors:ghi
+executors:
     docker:
       - image: cypress/base:10
 
 jobs:
-  install-dependencies:
     executor: default-executor
     steps:
       - checkout
