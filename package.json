@@ -9,7 +9,7 @@
     "test:e2e:headless": "vue-cli-service test:e2e --headless",
     "test:unit": "vue-cli-service test:unit",
     "prettier:format-all": "prettier --write \"**/*.{vue,scss,sass,js,json}\"",
-    "prettier:check": "prettier \"**/*.{vue,js}\"",
+    "prettier:check": "prettier \"**/*.{vue,js}\" --list-different",
     "firebase:deploy:ci": "firebase deploy --non-interactive --token $FIREBASE_TOKEN",
     "bundlesize": "bundlesize"
   },
@@ -20,6 +20,7 @@
   "dependencies": {
     "acorn": "^7.1.0",
     "core-js": "^3.1.3",
+    "esm": "^3.2.25",
     "firebase": "^6.0.4",
     "is_js": "^0.9.0",
     "lodash": "^4.17.15",
@@ -133,6 +134,21 @@
       "<rootDir>/tests/unit/setup.js"
     ]
   },
-  "readme": "ERROR: No README data found!",
-  "_id": "test@1.0.0"
+  "main": ".eslintrc.js",
+  "module": "main.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thebaronalex/bento-starter.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thebaronalex/bento-starter/issues"
+  },
+  "homepage": "https://github.com/thebaronalex/bento-starter#readme",
+  "description": ""
 }
