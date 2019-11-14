@@ -1,3 +1,4 @@
+/* eslint-disable */
 import firebase from 'firebase/app'
 import { isNil } from 'lodash'
 
@@ -7,12 +8,14 @@ let asyncFirestore = null
 
 export default () => {
   if (isNil(asyncFirestore)) {
-    asyncFirestore = import(/* webpackChunkName: "chunk-firestore" */ 'firebase/firestore').then(
-      () => {
-        firebase.firestore().settings({})
-        firebase.firestore().enablePersistence({ synchronizeTabs: true })
-        return firebase.firestore()
-      }
+    asyncFirestore = import(
+      /* webpackChunkName: "chunk-firestore" */ 'firebase/firestore'
+    ).then(() => {
+      firebase.firestore().settings({})
+      firebase.firestore().enablePersistence({ synchronizeTabs: true })
+      return firebase.firestore()
+      return asyncFirestor
+    }
     )
   }
   return asyncFirestore

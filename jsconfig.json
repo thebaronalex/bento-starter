@@ -1,10 +1,24 @@
 // VSCode configuration providing help with aliases
+
 {
+  "include": ["src", "tests"],
+  "exclude": ["node_modules", "dist"],
+
+
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
+      "target": "es2017",
+      "allowSyntheticDefaultImports": false,
+      "baseUrl": "./",
+      "paths": {
+        "Config/*": ["src/config/*"],
+        "Components/*": ["src/components/*"],
+        "Ducks/*": ["src/ducks/*"],
+        "Shared/*": ["src/shared/*"],
+        "App/*": ["src/*"],
+        "@/*": ["./src/*"]
+      }
     }
-  },
-  "include": ["src", "tests"]
-}
+  }
+
+
+

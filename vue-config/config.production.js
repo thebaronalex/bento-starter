@@ -3,7 +3,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer') // eslint-disabl
   .BundleAnalyzerPlugin
 const PrerenderSPAPlugin = require('prerender-spa-plugin') // eslint-disable-line
 
-const prerenderedRoutesList = ['/login', '/home', '/']
+const prerenderedRoutesList = ['/login', '/home', '/', 'dist']
 
 module.exports = {
   configureWebpack: {
@@ -13,11 +13,9 @@ module.exports = {
         analyzerMode: 'disabled',
         generateStatsFile: true
       }),
-      /* See https://github.com/chrisvfritz/prerender-spa-plugin for more details */
-      new PrerenderSPAPlugin({
-        // Required - The path to the webpack-outputted app to prerender.
+      new PrerenderSPAPlugin({  // eslint-disable-line
+        // eslint-disable-next-line no-undef
         staticDir: path.join(__rootDirname),
-        // Required - Routes to prerender.
         routes: prerenderedRoutesList
       })
     ]

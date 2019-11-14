@@ -1,7 +1,6 @@
 {
   "vetur.validation.template": false,
 
-  "prettier.eslintIntegration": true,
 
   "eslint.autoFixOnSave": true,
   "eslint.options": { "extensions": [".html", ".js", ".vue", ".scss"] },
@@ -18,5 +17,9 @@
 
   "[scss]": {
     "editor.formatOnSave": true
+  },
+  "prettier.disableLanguages":
+    ["html"],
   }
-}
+
+
