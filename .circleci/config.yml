@@ -1,7 +1,6 @@
 version: 2.1
 
-executors:
-  default-executor:
+executors:ghi
     docker:
       - image: cypress/base:10
 
