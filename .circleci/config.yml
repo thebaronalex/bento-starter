@@ -11,116 +11,115 @@ jobs:
     steps:
       - checkout
 
-      - restore_cache:
-          keys:
-            - v2-deps-{{ checksum "package-lock.json" }}
-            - v2-deps
+        - restore_cache:
+            keys:
+              - v2-deps-{{ checksum "package-lock.json" }}
+              - v2-deps
 
-      - run:
-          name: 'Install dependencies'
-          command: npm ci
+        - run:
+            name: 'Install dependencies'
+            command: npm ci
 
-      - save_cache:
-          paths:
-            - ~/.npm
-            - ~/.cache
-          key: v2-deps-{{ checksum "package-lock.json" }}
+        - save_cache:
+            paths:
+              - ~/.npm
+              - ~/.cache
+            key: v2-deps-{{ checksum "package-lock.json" }}
 
-      - persist_to_workspace:
-          root: .
-          paths: .
+        - persist_to_workspace:
+            root: .
+            paths: .
 
-  check-prettier:
-    executor: default-executor
-    steps:
-      - attach_workspace:
-          at: .
-      - run:
-          name: 'Run prettier check on project files'
-          command: npm run prettier:check
+      check-prettier:
+        executor: default-executor
+        steps:
+          - attach_workspace:
+              at: .
+          - run:
+              name: 'Run prettier check on project files'
+              command: npm run prettier:check
 
-  check-linter:
-    executor: default-executor
-    steps:
-      - attach_workspace:
-          at: .
-      - run:
-          name: 'Run linter'
-          command: npm run lint
+      check-linter:
+        executor: default-executor
+        steps:
+            - attach_workspace:
+              at: .
+            - run:
+              name: 'Run linter'
+              command: npm run lint
 
-  run-unit-tests:
-    executor: default-executor
-    steps:
-      - attach_workspace:
-          at: .
-      - run:
-          name: 'Run unit tests'
-          command: npm run test:unit
+      run-unit-tests:
+        executor: default-executor
+        steps:
+          - attach_workspace:
+              at: .
+          - run:
+              name: 'Run unit tests'
+              command: npm run test:unit
 
-  build:
-    executor: default-executor
-    steps:
-      - attach_workspace:
-          at: .
-      - run:
-          name: 'Build'
-          command: npm run build
-      - persist_to_workspace:
-          root: .
-          paths: .
-      - store_test_results:
-          path: test-results
-
-
-  check-bundles-sizes:
-    executor: default-executor
-    steps:
-      - attach_workspace:
-          at: .
-      - run:
-          name: 'Check bundles sizes'
-          command: npm run bundlesize
-      - store_test_results:
-        path: test-results
+      build:
+        executor: default-executor
+        steps:
+          - attach_workspace:
+              at: .
+          - run:
+              name: 'Build'
+              command: npm run build
+          - persist_to_workspace:
+              root: .
+              paths: .
+          - store_test_results:
+              path: test-results
 
 
-  deploy:
-    executor: default-executor
-    steps:
-      - attach_workspace:
-          at: .
-      - run:
-          name: 'Firebase deploy'
-          command: |
-            if [[ "$CIRCLE_BRANCH" == "master" ]]; then
-              npm run firebase:deploy:ci
-            fi
-      - store_test_results:
-           path: test-results
+      check-bundles-sizes:
+        executor: default-executor
+        steps:
+          - attach_workspace:
+              at: .
+          - run:
+              name: 'Check bundles sizes'
+              command: npm run bundlesize
 
 
-workflows:
-  version: 2
-  build-and-deploy:
-    jobs:
-      - install-dependencies
-      - check-prettier:
-          requires:
-            - install-dependencies
-      - check-linter:
-          requires:
-            - install-dependencies
-      - run-unit-tests:
-          requires:
-            - install-dependencies
-      - build:
-          requires:
-            - check-prettier
-            - check-linter
-            - run-unit-tests
-      - check-bundles-sizes:
-          requires:
-            - build
-      - deploy:
-          requires:
-            - check-bundles-sizes
+
+      deploy:
+        executor: default-executor
+        steps:
+          - attach_workspace:
+              at: .
+          - run:
+              name: 'Firebase deploy'
+              command: |
+                if [[ "$CIRCLE_BRANCH" == "master" ]]; then
+                  npm run firebase:deploy:ci
+                fi
+          - store_test_results:
+              path: test-results
+
+
+  workflows:
+    version: 2
+    build-and-deploy:
+      jobs:
+        - install-dependencies
+        - check-prettier:
+            requires:
+              - install-dependencies
+        - check-linter:
+            requires:
+              - install-dependencies
+        - run-unit-tests:
+            requires:
+              - install-dependencies
+        - build:
+            requires:
+              - check-prettier
+              - check-linter
+              - run-unit-tests
+        - check-bundles-sizes:
+            requires:
+              - build
+        - deploy:
+            requires:
+              - check-bundles-sizes
